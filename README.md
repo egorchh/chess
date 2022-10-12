@@ -1,3 +1,3 @@
 # Let's play Chess!
 
-Stack: React, TypeScript
+Technology stack: React, TypeScript
