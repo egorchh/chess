@@ -1,8 +1,8 @@
 # Сыграй в шахматы!
 
-> [!NOTE]
-> Проект "Шахматы", выполненный в ООП стиле с использованием React, TypeScript.
+### Проект "Шахматы", выполненный в ООП стиле с использованием React, TypeScript.
 
+<p></p>
 
 <p align="center">
   <img src="https://github.com/egorchh/chess/blob/master/src/assets/1.png?raw=true">
