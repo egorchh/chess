@@ -48,7 +48,7 @@ const BoardComponent: React.FC<BoardProps> = ({board, setBoard, currentPlayer, s
   } 
 
   return (
-    <div>
+    <div className="board-wrapper">
       <h3>Ход игрока {currentPlayer?.color}</h3>
       <div className="board">
         {board.cells.map((row, index) => 

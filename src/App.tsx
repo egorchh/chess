@@ -38,18 +38,18 @@ function App() {
 
   return (
     <div className="app">
+      <div className='app-wrapper'>
+        <LostFiguresComponent title="Черные фигуры" figures={board.lostBlackFigures}/>
+        <BoardComponent 
+          board={board} 
+          setBoard={setBoard}
+          currentPlayer={currentPlayer}
+          swapPlayer={swapPlayer}
+        />  
+        <LostFiguresComponent title="Белые фигуры" figures={board.lostWhiteFigures}/>
+      </div>
       <TimerComponent currentPlayer={currentPlayer} restart={restart} />
-      <LostFiguresComponent title="Черные фигуры" figures={board.lostBlackFigures}/>
-      <BoardComponent 
-        board={board} 
-        setBoard={setBoard}
-        currentPlayer={currentPlayer}
-        swapPlayer={swapPlayer}
-      />  
-      <LostFiguresComponent title="Белые фигуры" figures={board.lostWhiteFigures}/> 
     </div>
-
-    
   );
 }
 

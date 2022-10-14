@@ -1,0 +1,30 @@
+.timer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  min-height: 60px;
+  width: 512px;
+  padding: 10px 20px;
+  background-color: rgb(245, 170, 247);
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-left: 8px;
+}
+
+.timer::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  width: 512px;
+  min-height: 60px;
+  background-color: rgba(178, 109, 180, 0.993);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.timer-button {
+  
+}
