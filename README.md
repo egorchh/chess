@@ -1,6 +1,8 @@
-# Let's play Chess!
+<p align="center">
+  # Сыграй в шахматы!
 
-Technology stack: React, TypeScript
+  Проект "Шахматы", выполненный в ООП стиле с использованием React, TypeScript
+</p>
 
 <p align="center">
   <img src="https://github.com/egorchh/chess/blob/master/src/assets/1.png?raw=true">
