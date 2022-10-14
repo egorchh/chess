@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { Cell } from "../models/Cell";
+import { Cell } from "../../models/Cell";
+
+import './cell.css'
 
 interface CellProps {
   cell: Cell

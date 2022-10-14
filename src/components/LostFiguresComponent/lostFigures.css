@@ -1,0 +1,40 @@
+.lost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  background-color: rgba(245, 170, 247, 0.541);
+  border-radius: 10px;
+  min-width: 15%;
+}
+
+.lost-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+} 
+
+.lost-list {
+  list-style: none;
+  min-width: 90%;
+}
+
+.lost-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(245, 170, 247, 0.521);
+  border-radius: 10px;
+  padding: 5px 20px;
+  margin-bottom: 10px;
+}
+
+.lost-item__name {
+  font-size: 15px;
+}
+
+.lost-item__logo {
+  width: 40px;
+  height: 40px;
+}
