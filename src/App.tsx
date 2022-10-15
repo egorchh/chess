@@ -38,6 +38,7 @@ function App() {
 
   return (
     <div className="app">
+      <h3 className='app-player'>Ход игрока {currentPlayer?.color}</h3>
       <div className='app-wrapper'>
         <LostFiguresComponent title="Черные фигуры" figures={board.lostBlackFigures}/>
         <BoardComponent 
@@ -48,7 +49,7 @@ function App() {
         />  
         <LostFiguresComponent title="Белые фигуры" figures={board.lostWhiteFigures}/>
       </div>
-      <TimerComponent currentPlayer={currentPlayer} restart={restart} />
+      <TimerComponent currentPlayer={currentPlayer} restart={restart}/>
     </div>
   );
 }

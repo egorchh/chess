@@ -48,24 +48,20 @@ const BoardComponent: React.FC<BoardProps> = ({board, setBoard, currentPlayer, s
   } 
 
   return (
-    <div className="board-wrapper">
-      <h3>Ход игрока {currentPlayer?.color}</h3>
-      <div className="board">
-        {board.cells.map((row, index) => 
-          <React.Fragment key={index}>
-            {row.map(cell => 
-              <CellComponent 
-                key={cell.id}
-                click={click}
-                cell={cell}
-                selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
-              />
-            )}
-          </React.Fragment>
-        )}
-      </div>
+    <div className="board">
+      {board.cells.map((row, index) => 
+        <React.Fragment key={index}>
+          {row.map(cell => 
+            <CellComponent 
+              key={cell.id}
+              click={click}
+              cell={cell}
+              selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
+            />
+          )}
+        </React.Fragment>
+      )}
     </div>
-    
   );
 };
 

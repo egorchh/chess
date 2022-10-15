@@ -16,7 +16,7 @@ const LostFiguresComponent: React.FC<LostFiguresProps> = ({title, figures}) => {
         {figures.map(figure => (
           <li className='lost-item' key={figure.id}>
             <p className='lost-item__name'>{figure.name}</p> 
-            {figure.logo && <img className='lost-item__logo' src={figure.logo} alt="Картинка фигуры"/>}
+            {figure.logo && <img className='lost-item__logo' src={figure?.logo} alt="Картинка фигуры"/>}
           </li>
         ))}
       </ul>
