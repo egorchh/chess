@@ -29,6 +29,7 @@ function App() {
     newBoard.initCells();
     newBoard.addFigures();
     setBoard(newBoard)
+    setCurrentPlayer(whitePlayer);
   }
 
   function swapPlayer() {
