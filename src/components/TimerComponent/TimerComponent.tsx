@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { Colors } from '../../models/Colors';
 import { Player } from '../../models/Player';
 
@@ -7,11 +7,15 @@ import './timer.css';
 interface TimerProps {
   currentPlayer: Player | null;
   restart: () => void;
+  setWhiteTime: Dispatch<SetStateAction<number>>;
+  setBlackTime: Dispatch<SetStateAction<number>>;
+  blackTime: number;
+  whiteTime: number;
+  setCurrentPlayer: Dispatch<SetStateAction<Player | null>>;
+  whitePlayer: Player;
 }
 
-const TimerComponent: React.FC<TimerProps> = ({currentPlayer, restart}) => {
-  const [whiteTime, setWhiteTime] = useState(300);
-  const [blackTime, setBlackTime] = useState(300);
+const TimerComponent: React.FC<TimerProps> = ({currentPlayer, restart, setWhiteTime, setBlackTime, blackTime, whiteTime, setCurrentPlayer, whitePlayer}) => {
   const [start, setStart] = useState(false);
   const [startButtonPressed, setStartButtonPressed] = useState(false);
   const [restartButtonPressed, setRestartButtonPressed] = useState(false);
@@ -26,6 +30,14 @@ const TimerComponent: React.FC<TimerProps> = ({currentPlayer, restart}) => {
     }
     // eslint-disable-next-line
   }, [currentPlayer, start])
+
+  
+
+  useEffect(() => {
+    if (whiteTime === 0 || blackTime === 0) {
+      timeIsUp();
+    }
+  }, [whiteTime, blackTime])
 
   function startTimer(bool: boolean) {
     if (timer.current) {
@@ -48,13 +60,18 @@ const TimerComponent: React.FC<TimerProps> = ({currentPlayer, restart}) => {
   }
 
   const handleRestart = () => {
-    setWhiteTime(300);
-    setBlackTime(300);
-    restart();
-    setRestartButtonPressed(prev => !prev)
-    setTimeout(() => {
+    if (whiteTime !== 300 || blackTime !== 300) {
+      setWhiteTime(300);
+      setBlackTime(300);
+      restart();
       setRestartButtonPressed(prev => !prev)
-    }, 300);
+      setTimeout(() => {
+        setRestartButtonPressed(prev => !prev)
+      }, 300);
+      setStart(false);
+    } else {
+      alert('Игра ещё не была начата ;(')
+    }
   }
 
   function handleStartStop() {
@@ -65,8 +82,33 @@ const TimerComponent: React.FC<TimerProps> = ({currentPlayer, restart}) => {
     }, 300);
   }
 
-  let startClazz = `timer-button ${startButtonPressed ? 'pressed' : ''}`;
-  let restartClazz = `timer-button ${restartButtonPressed ? 'pressed' : ''}`;
+  function timeIsUp() {
+    setWhiteTime(300);
+    setBlackTime(300);
+    setStart(false); // не обновляется надпись
+    setCurrentPlayer(whitePlayer);
+    restart();
+    startTimer(false);
+    // setStartButtonPressed(prev => !prev);
+  }
+
+  function secondsToMinutes(time: number): string {
+    const seconds = time % 60;
+    const minutes = Math.floor(time / 60);
+
+    return `${getZeros(minutes)} min : ${getZeros(seconds)} sec`;
+  }
+
+  function getZeros(number: number): string {
+    if (number >= 0 && number <= 9 ) {
+      return `0${number}`;
+    }
+
+    return `${number}`;
+  }
+
+  let startClazz = `button ${startButtonPressed ? 'pressed' : ''}`;
+  let restartClazz = `button ${restartButtonPressed ? 'pressed' : ''}`;
 
   return (
     <div className='timer'>
@@ -84,8 +126,14 @@ const TimerComponent: React.FC<TimerProps> = ({currentPlayer, restart}) => {
         </div>
       </div>
       <div className="timer-wrapper__counters">
-        <h4>White: {whiteTime}</h4>
-        <h4>Black: {blackTime}</h4>
+        <div>
+          <p className='timer-side'>White:</p>
+          <p className='timer-value'>{secondsToMinutes(whiteTime)}</p>
+        </div>
+        <div>
+          <p className='timer-side'>Black:</p>
+          <p className='timer-value'>{secondsToMinutes(blackTime)}</p>
+        </div>
       </div>
     </div>
   );

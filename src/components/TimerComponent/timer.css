@@ -4,9 +4,9 @@
   justify-content: space-around;
   align-items: center;
   position: relative;
-  min-height: 130px;
+  height: 150px;
   width: 512px;
-  padding: 10px 20px;
+  padding: 10px 20px 5px 20px;
   background-color: rgb(245, 170, 247);
   border-radius: 10px;
   margin-top: 30px;
@@ -26,7 +26,7 @@
   width: 80%;
 }
 
-.timer-button {
+.button {
   width: 130px;
   padding: 10px 10px;
   border: none;
@@ -51,4 +51,10 @@
   justify-content: space-around;
   width: 80%;
   padding: 5px 0 10px 0;
+}
+
+.timer-side {
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 18px;
 }

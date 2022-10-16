@@ -97,7 +97,7 @@ export class Cell {
   }
 
   addLostFigure(figure: Figure) {
-    figure.color === Colors.BLACK ? this.board.lostBlackFigures.push(figure) : this.board.lostWhiteFigures.push(figure)
+    figure.color === Colors.BLACK ? this.board.lostBlackFigures.push(figure) : this.board.lostWhiteFigures.push(figure);
   }
 
   moveFigure(target: Cell) {

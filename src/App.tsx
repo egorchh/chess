@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import BoardComponent from './components/BoardComponent/BoardComponent';
+import LoseModalComponent from './components/LoseModalComponent/LoseModalComponent';
 
 import { Board } from './models/Board';
 import { Colors } from './models/Colors';
@@ -17,12 +18,15 @@ function App() {
   const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
   const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null)
-
+  const [whiteTime, setWhiteTime] = useState(5);
+  const [blackTime, setBlackTime] = useState(5);
 
   useEffect(() => {
     restart();
     setCurrentPlayer(whitePlayer)
   }, [])
+
+  console.log('render')
 
   function restart() {
     const newBoard = new Board();
@@ -36,21 +40,45 @@ function App() {
     setCurrentPlayer(currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer)
   }
 
-
   return (
     <div className="app">
-      <h3 className='app-player'>Ход игрока {currentPlayer?.color}</h3>
+      <h3 className='app-player'>
+        <span className='app-player__color'>{currentPlayer?.color}</span> Player turn
+      </h3>
       <div className='app-wrapper'>
-        <LostFiguresComponent title="Черные фигуры" figures={board.lostBlackFigures}/>
+        <LostFiguresComponent 
+          title="Black figures" 
+          figures={board.lostBlackFigures}
+        />
         <BoardComponent 
           board={board} 
           setBoard={setBoard}
           currentPlayer={currentPlayer}
           swapPlayer={swapPlayer}
         />  
-        <LostFiguresComponent title="Белые фигуры" figures={board.lostWhiteFigures}/>
+        <LostFiguresComponent 
+          title="White figures" 
+          figures={board.lostWhiteFigures} 
+        />
       </div>
-      <TimerComponent currentPlayer={currentPlayer} restart={restart}/>
+      <TimerComponent 
+        whiteTime={whiteTime} 
+        blackTime={blackTime} 
+        setWhiteTime={setWhiteTime} 
+        setBlackTime={setBlackTime} 
+        currentPlayer={currentPlayer} 
+        whitePlayer={whitePlayer}
+        restart={restart} 
+        setCurrentPlayer={setCurrentPlayer}
+      />
+      <LoseModalComponent 
+        setWhiteTime={setWhiteTime} 
+        setBlackTime={setBlackTime} 
+        whiteTime={whiteTime} 
+        blackTime={blackTime} 
+        currentPlayer={currentPlayer} 
+        restart={restart} 
+      />
     </div>
   );
 }
