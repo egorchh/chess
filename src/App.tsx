@@ -75,8 +75,7 @@ function App() {
         setWhiteTime={setWhiteTime} 
         setBlackTime={setBlackTime} 
         whiteTime={whiteTime} 
-        blackTime={blackTime} 
-        currentPlayer={currentPlayer} 
+        blackTime={blackTime}
         restart={restart} 
       />
     </div>

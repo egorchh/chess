@@ -7,7 +7,6 @@ import gif from '../../assets/chess-gif.gif'
 import './loseModal.css'
 
 interface LoseModalProps {
-  currentPlayer: Player | null;
   restart: () => void;
   blackTime: number;
   whiteTime: number;
@@ -15,10 +14,11 @@ interface LoseModalProps {
   setBlackTime: Dispatch<SetStateAction<number>>;
 } 
 
-const LoseModalComponent: React.FC<LoseModalProps> = ({restart, currentPlayer, whiteTime, blackTime, setWhiteTime, setBlackTime}) => {
+const LoseModalComponent: React.FC<LoseModalProps> = ({restart, whiteTime, blackTime, setWhiteTime, setBlackTime}) => {
   const [close, setClose] = useState(true);
   const [closeButtonPressed, setCloseButtonPressed] = useState(false);
   const [restartButtonPressed, setRestartButtonPressed] = useState(false);
+  const [winner, setWinner] = useState('');
 
   const closeHandler = () => {
     setTimeout(() => {
@@ -44,8 +44,12 @@ const LoseModalComponent: React.FC<LoseModalProps> = ({restart, currentPlayer, w
   }
 
   useEffect(() => {
-    if (whiteTime === 0 || blackTime === 0) {
+    if (whiteTime === 0) {
       setClose(false)
+      setWinner('black')
+    } else if (blackTime === 0) {
+      setClose(false)
+      setWinner('white')
     }
   }, [whiteTime, blackTime])
 
@@ -56,7 +60,7 @@ const LoseModalComponent: React.FC<LoseModalProps> = ({restart, currentPlayer, w
   return (
     <div style={closeClazz} className='lose'>
       <div className="lose-modal">
-        <p className='lose-alert'>Поздравляем, игрок {currentPlayer?.color} победил!</p>
+        <p className='lose-alert'>Поздравляем, игрок {winner} победил!</p>
         <p className='lose-descr'>Вражеский король был захвачен =(</p>
         <img className="lose-gif" src={gif} alt="Гиф-изображение шахматного поля" />
         <div className='lose-wrapper__buttons'>

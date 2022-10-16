@@ -85,11 +85,9 @@ const TimerComponent: React.FC<TimerProps> = ({currentPlayer, restart, setWhiteT
   function timeIsUp() {
     setWhiteTime(300);
     setBlackTime(300);
-    setStart(false); // не обновляется надпись
-    setCurrentPlayer(whitePlayer);
+    setStart(false);;
     restart();
     startTimer(false);
-    // setStartButtonPressed(prev => !prev);
   }
 
   function secondsToMinutes(time: number): string {
